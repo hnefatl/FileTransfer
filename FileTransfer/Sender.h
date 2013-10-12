@@ -4,6 +4,10 @@
 #include <string>
 #include <fstream>
 
+#include <WS2tcpip.h>
+#include <winsock.h>
+#include <Windows.h>
+
 class Sender
 {
 public:
