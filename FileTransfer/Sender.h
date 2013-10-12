@@ -11,11 +11,20 @@
 class Sender
 {
 public:
-	virtual bool SendFile(const std::string &Path, const std::string &Target)=0;
-	virtual bool SendFile(std::ifstream *const File, const std::string &Target)=0;
+	virtual ~Sender();
 
-	virtual bool ReceiveFile(const std::string &Path, const std::string &Target)=0;
-	virtual bool ReceiveFile(std::ofstream *const File, const std::string &Target)=0;
+	virtual bool Start(const std::string &IP, const std::string &Target, const int &SocketType);
+
+	virtual bool SendFile(const std::string &Path, const std::string &Target) const;
+	virtual bool SendFile(std::ifstream *const File, const std::string &Target) const=0;
+
+	virtual std::string GetTargetIP() const;
+	virtual SOCKET GetSocket() const;
+
+protected:
+	std::string TargetIP;
+	SOCKET TargetSocket;
+	addrinfo *TargetInfo;
 };
 
 #endif

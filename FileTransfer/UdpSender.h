@@ -1,23 +1,21 @@
-#ifndef _TCPSENDER_H
-#define _TCPSENDER_H
+#ifndef _UDPSENDER_H
+#define _UDPSENDER_H
 
 #include "Sender.h"
 
-class TcpSender
+#include "Packet.h"
+
+class UdpSender
 	: public Sender
 {
 public:
-	TcpSender();
-
 	virtual bool Start(const std::string &IP, const std::string &Port);
 
+	virtual bool SendFile(const std::string &Path, const std::string &Target) const;
 	virtual bool SendFile(std::ifstream *const File, const std::string &Target) const;
 
-	unsigned int ReadSize;
-
 protected:
-	bool Send(const std::string &Message) const;
-	bool SendPlain(const std::string &Message) const;
+	virtual bool SendPacket(const Packet &P) const;
 };
 
 #endif
