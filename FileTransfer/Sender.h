@@ -1,0 +1,17 @@
+#ifndef _SENDER_H
+#define _SENDER_H
+
+#include <string>
+#include <fstream>
+
+class Sender
+{
+public:
+	virtual bool SendFile(const std::string &Path, const std::string &Target)=0;
+	virtual bool SendFile(std::ifstream *const File, const std::string &Target)=0;
+
+	virtual bool ReceiveFile(const std::string &Path, const std::string &Target)=0;
+	virtual bool ReceiveFile(std::ofstream *const File, const std::string &Target)=0;
+};
+
+#endif
